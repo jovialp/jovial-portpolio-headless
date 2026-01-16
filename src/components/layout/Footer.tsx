@@ -1,0 +1,46 @@
+import Link from "next/link";
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="border-t border-border">
+      <div className="section-container py-12 md:py-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          {/* Copyright */}
+          <div>
+            <span className="mono text-muted-foreground">© {currentYear}</span>
+          </div>
+
+          {/* Links */}
+          <div className="flex items-center gap-8">
+            <Link
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              GitHub
+            </Link>
+
+            <Link
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              LinkedIn
+            </Link>
+
+            <Link
+              href="mailto:mail@jovialp.com"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+            >
+              Email
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
