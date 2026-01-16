@@ -84,10 +84,10 @@ export function Hero({ data }: HeroProps) {
             </span>
 
             <Link
-              href="/architecture"
+              href="/contact"
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Architecture notes
+              Contact
             </Link>
           </div>
         </div>
