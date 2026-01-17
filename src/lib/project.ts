@@ -18,7 +18,7 @@ export async function fetchFeaturedProjects() {
   const defaultResp: PayloadResponse<ProjectData> = { docs: [] };
 
   const data = await safeFetchJSON<PayloadResponse<ProjectData>>(
-    `/api/projects?where[featured][equals]=true`,
+    `/api/projects?where[featured][equals]=true&sort=-timeline.startDate&limit=3`,
     { next: { revalidate: 30 } },
     defaultResp
   );
