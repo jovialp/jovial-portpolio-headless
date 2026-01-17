@@ -6,7 +6,7 @@ export async function fetchProjects() {
   const defaultResp: PayloadResponse<ProjectData> = { docs: [] };
 
   const data = await safeFetchJSON<PayloadResponse<ProjectData>>(
-    "/api/projects",
+    "/api/projects?sort=-timeline.startDate&limit=30",
     { next: { revalidate: 30 } },
     defaultResp
   );
