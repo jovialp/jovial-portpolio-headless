@@ -1,7 +1,7 @@
+import ContactItem from "@/components/ContactItem";
 import { RichTextRenderer } from "@/components/RichTextRenderer";
-import { fetchContactPage } from "@/lib/contact-page";
+import { fetchContactPage } from "@/services/contact-page";
 import { Mail, Github, Linkedin, PhoneCall } from "lucide-react";
-import Link from "next/link";
 
 const CONTACT_CONFIG = {
   email: {
@@ -48,32 +48,13 @@ const Contact = async () => {
               const config = CONTACT_CONFIG[contact.contactType];
               if (!config) return null;
 
-              const Icon = config.icon;
-
               return (
-                <Link
+                <ContactItem
                   key={contact.name}
-                  href={config.getHref(contact.name)}
-                  target={config.external ? "_blank" : undefined}
-                  rel={config.external ? "noopener noreferrer" : undefined}
-                  className={[
-                    "group flex items-center gap-6 py-6 border-t border-border card-hover -mx-6 px-6",
-                    i == contacts.length - 1 && "border-b",
-                  ]
-                    .filter(Boolean)
-                    .join(" ")}
-                >
-                  <Icon className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors duration-200" />
-
-                  <div>
-                    <p className="text-foreground group-hover:text-primary transition-colors duration-200">
-                      {contact.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {config.description}
-                    </p>
-                  </div>
-                </Link>
+                  contact={contact}
+                  config={config}
+                  isLast={i == contacts.length - 1}
+                />
               );
             })}
           </div>

@@ -1,10 +1,6 @@
 import "server-only";
 import { safeFetchJSON } from "@/lib/fetcher";
-import { ProjectData } from "@/types";
-
-type PayloadResponse<T> = {
-  docs: T[];
-};
+import { PayloadResponse, ProjectData } from "@/types";
 
 export async function fetchProjects() {
   const defaultResp: PayloadResponse<ProjectData> = { docs: [] };

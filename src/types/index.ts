@@ -1,3 +1,12 @@
+export type NavigationItem = {
+  label: string;
+  href: string;
+};
+
+export type PayloadResponse<T> = {
+  docs: T[];
+};
+
 export type LexicalNode = {
   type: string;
   version?: number;
@@ -69,4 +78,24 @@ export interface ProjectData {
     metaTitle: string;
     metaDescription: string;
   };
+}
+
+export interface ExperienceData {
+  visible: boolean;
+  company: string;
+  role: string;
+  location?: string;
+  startDate: string;
+  endDate?: string | null;
+  isCurrent: boolean;
+  summary?: string;
+  responsibilities: { id: string; text: string }[];
+}
+
+export interface SkillData {
+  name: string;
+  category: string;
+  proficiency?: string;
+  order: number;
+  visible: boolean;
 }

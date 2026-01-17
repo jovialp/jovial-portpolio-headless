@@ -26,7 +26,6 @@ const formatDate = (dateString: string) => {
 const ProjectDetail = async ({ params }: PageProps) => {
   const { slug } = await params;
   const project = await fetchProjectBySlug(slug);
-  console.log("ProjectDetail---", slug, project);
 
   if (!project) {
     return (

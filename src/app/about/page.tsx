@@ -1,124 +1,67 @@
-const About = () => {
+import ExperienceRow from "@/components/ExperienceRow";
+import HowIWorkItem from "@/components/HowIWorkItem";
+import { RichTextRenderer } from "@/components/RichTextRenderer";
+import Skill from "@/components/Skill";
+import { fetchAboutPage } from "@/services/about-page";
+
+const About = async () => {
+  const aboutData = await fetchAboutPage();
+
   return (
     <article className="section-spacing">
       <div className="section-container">
+        {/* Header */}
         <header className="max-w-3xl mb-24">
-          <p className="label mb-6">About</p>
-          <h1 className="heading-lg mb-8">Engineering as craft</h1>
+          <p className="label mb-6">{aboutData?.summarySection?.label}</p>
+          <h1 className="heading-lg mb-8">{aboutData?.pageTitle}</h1>
         </header>
 
-        <div className="max-w-3xl space-y-8">
-          <p className="body-lg">
-            I'm a senior software engineer focused on distributed systems,
-            developer tooling, and production infrastructure. I've spent the
-            last decade building systems that other engineers rely on.
-          </p>
-
-          <p className="body-md">
-            My work sits at the intersection of architecture and implementation.
-            I design systems that scale, but I also write the code that makes
-            them work. I believe the best architects are the ones who still ship
-            production code.
-          </p>
-
-          <p className="body-md">
-            Currently, I'm particularly interested in developer experience,
-            AI-assisted development workflows, and making infrastructure
-            invisible to product teams.
-          </p>
+        {/* Summary */}
+        <div className="max-w-3xl space-y-6 mb-32">
+          <RichTextRenderer
+            className="body-lg"
+            content={aboutData?.summarySection?.description}
+          />
         </div>
 
-        <section className="mt-32">
+        {/* Experience Section */}
+        <section className="mb-32">
           <h2 className="heading-md mb-10 pb-6 border-b border-border">
-            Background
+            {aboutData?.experienceSectionLabel}
           </h2>
-          <div className="space-y-12 max-w-3xl">
-            <div>
-              <div className="flex items-baseline justify-between mb-2">
-                <h3 className="text-lg font-medium text-foreground">
-                  Staff Engineer
-                </h3>
-                <span className="mono text-sm text-muted-foreground">
-                  2022 – Present
-                </span>
-              </div>
-              <p className="text-muted-foreground mb-2">
-                Infrastructure Platform
-              </p>
-              <p className="body-sm">
-                Leading architecture for internal developer platform. Designing
-                systems that enable 500+ engineers to deploy and operate
-                services independently.
-              </p>
-            </div>
-
-            <div>
-              <div className="flex items-baseline justify-between mb-2">
-                <h3 className="text-lg font-medium text-foreground">
-                  Senior Engineer
-                </h3>
-                <span className="mono text-sm text-muted-foreground">
-                  2019 – 2022
-                </span>
-              </div>
-              <p className="text-muted-foreground mb-2">Distributed Systems</p>
-              <p className="body-sm">
-                Built real-time data pipeline processing millions of events
-                daily. Designed caching infrastructure serving global traffic.
-              </p>
-            </div>
-
-            <div>
-              <div className="flex items-baseline justify-between mb-2">
-                <h3 className="text-lg font-medium text-foreground">
-                  Software Engineer
-                </h3>
-                <span className="mono text-sm text-muted-foreground">
-                  2016 – 2019
-                </span>
-              </div>
-              <p className="text-muted-foreground mb-2">Backend Engineering</p>
-              <p className="body-sm">
-                Full-stack development with focus on API design and database
-                optimization. Led migration from monolith to microservices.
-              </p>
-            </div>
+          <div className="space-y-16 max-w-3xl">
+            {aboutData?.experience?.map((exp) => (
+              <ExperienceRow key={exp.company} experience={exp} />
+            ))}
           </div>
         </section>
 
-        <section className="mt-32">
+        {/* Skills Section */}
+        <section className="mb-32">
           <h2 className="heading-md mb-10 pb-6 border-b border-border">
-            How I work
+            {aboutData.skillSectionLabel}
           </h2>
-          <div className="grid gap-12 md:grid-cols-2 max-w-3xl">
-            <div>
-              <h3 className="label mb-4">Writing</h3>
-              <p className="body-sm">
-                I document decisions. Design docs, ADRs, runbooks. Clear writing
-                is clear thinking.
-              </p>
+          <div className="max-w-3xl">
+            <div className="flex flex-wrap gap-3">
+              {aboutData?.skills?.map((skill) => (
+                <Skill key={skill.name} skill={skill} />
+              ))}
             </div>
-            <div>
-              <h3 className="label mb-4">Collaboration</h3>
-              <p className="body-sm">
-                Best work happens in small teams with high trust. I prefer
-                working sessions over status meetings.
-              </p>
-            </div>
-            <div>
-              <h3 className="label mb-4">Mentorship</h3>
-              <p className="body-sm">
-                Growing engineers is part of the job. Code review, pairing, and
-                honest feedback.
-              </p>
-            </div>
-            <div>
-              <h3 className="label mb-4">Ownership</h3>
-              <p className="body-sm">
-                I ship and operate what I build. On-call is not someone else's
-                problem.
-              </p>
-            </div>
+            <p className="mt-6 text-xs text-muted-foreground mono">
+              Proficiency levels: Expert • Advanced • Intermediate
+            </p>
+          </div>
+        </section>
+
+        {/* How I Work Section */}
+        <section>
+          <h2 className="heading-md mb-10 pb-6 border-b border-border">
+            {aboutData?.howIWorkSection?.label}
+          </h2>
+          <div className="grid gap-8 md:grid-cols-2 max-w-3xl">
+            {aboutData?.howIWorkSection?.items.map((item, index) => (
+              <HowIWorkItem key={item.title} item={item} index={index} />
+            ))}
           </div>
         </section>
       </div>

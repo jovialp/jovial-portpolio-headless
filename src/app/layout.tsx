@@ -31,10 +31,10 @@ export default async function RootLayout({
           {children}
         </main>
 
-        <footer>
-          <p>{siteSettings.footerText}</p>
-          <Footer />
-        </footer>
+        <Footer
+          navigation={siteSettings?.footerLinks}
+          copyright={siteSettings?.footerText}
+        />
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ type NavItem = {
 export type SiteSettings = {
   navigation?: NavItem[];
   footerText?: string;
+  footerLinks?: NavItem[];
 };
 
 export async function fetchSiteSettings(): Promise<SiteSettings> {

@@ -32,7 +32,6 @@ export async function safeFetchJSON<T>(
     return data;
   } catch (err) {
     // Fail gracefully during build or when API is unreachable
-    // eslint-disable-next-line no-console
     console.warn(`safeFetchJSON error for ${endpoint}:`, err);
     return typeof defaultValue === "function"
       ? (defaultValue as () => T)()

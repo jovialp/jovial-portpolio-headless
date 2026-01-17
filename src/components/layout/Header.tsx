@@ -1,11 +1,7 @@
 "use client";
+import { NavigationItem } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-export type NavigationItem = {
-  label: string;
-  href: string;
-};
 
 type HeaderProps = {
   readonly navigation: NavigationItem[];

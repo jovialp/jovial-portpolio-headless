@@ -1,6 +1,13 @@
+import { NavigationItem } from "@/types";
 import Link from "next/link";
 
-export function Footer() {
+export function Footer({
+  navigation,
+  copyright,
+}: {
+  readonly navigation?: NavigationItem[];
+  readonly copyright?: string;
+}) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -9,35 +16,26 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           {/* Copyright */}
           <div>
-            <span className="mono text-muted-foreground">© {currentYear}</span>
+            <span className="mono text-muted-foreground">
+              {copyright} © {currentYear}
+            </span>
           </div>
 
           {/* Links */}
           <div className="flex items-center gap-8">
-            <Link
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              GitHub
-            </Link>
-
-            <Link
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              LinkedIn
-            </Link>
-
-            <Link
-              href="mailto:mail@jovialp.com"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              Email
-            </Link>
+            {navigation?.map((item) => {
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

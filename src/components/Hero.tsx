@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { HeroSection } from "@/lib/home-page";
+import type { HeroSection } from "@/services/home-page";
 
 interface HeroProps {
   readonly data: HeroSection;
