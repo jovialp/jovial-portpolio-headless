@@ -38,6 +38,7 @@ export interface ProjectData {
   title: string;
   slug: string;
   status: string;
+  description: RichTextContent;
   featured: boolean;
   timeline: {
     startDate: string;

@@ -8,7 +8,7 @@ type ProjectRowProps = {
 };
 
 export function ProjectRow({ project, index }: ProjectRowProps) {
-  const { title, caseStudy, technology } = project;
+  const { title, description, technology } = project;
 
   const techList = [
     ...(technology?.frontend ?? []),
@@ -34,17 +34,12 @@ export function ProjectRow({ project, index }: ProjectRowProps) {
               {title}
             </h3>
           </div>
-
-          <RichTextRenderer
-            content={caseStudy?.solution}
-            className="body-sm ml-10"
-          />
         </div>
 
         {/* Tags */}
         <div className="flex items-center gap-6 ml-10 md:ml-0">
           <div className="flex items-center gap-2">
-            {techList?.map?.(({ tech }) => (
+            {techList?.slice(0, 3)?.map?.(({ tech }) => (
               <span
                 key={tech}
                 className="mono text-xs text-muted-foreground px-2 py-1 bg-accent/50 rounded"
@@ -56,6 +51,7 @@ export function ProjectRow({ project, index }: ProjectRowProps) {
           →
         </div>
       </div>
+      <RichTextRenderer content={description} className="body-sm ml-10" />
     </Link>
   );
 }

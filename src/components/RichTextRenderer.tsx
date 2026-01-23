@@ -146,7 +146,7 @@ function renderText(node: LexicalNode, key: number): React.ReactNode {
   if (node.format) {
     if (node.format & TEXT_FORMAT.CODE) {
       content = (
-        <code className="rounded bg-muted px-1 py-0.5 font-mono text-sm">
+        <code className="rounded text-foreground px-1 py-0.5 font-mono text-sm">
           {content}
         </code>
       );
