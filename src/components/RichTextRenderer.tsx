@@ -59,9 +59,9 @@ function renderNode(node: LexicalNode, key: number): React.ReactNode {
     case "heading": {
       const Tag = (node.tag || "h2") as keyof JSX.IntrinsicElements;
       const sizeMap: Record<string, string> = {
-        h1: "heading-xl",
-        h2: "heading-lg",
-        h3: "heading-md",
+        h1: "heading-md",
+        h2: "heading-sm",
+        h3: "heading-sm",
         h4: "heading-sm",
       };
 
